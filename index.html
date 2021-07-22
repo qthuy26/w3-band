@@ -95,7 +95,7 @@
                                 <h3 class="place-heading">New York</h3>
                                 <p class="place-time">Fri 27 Nov 2016</p>
                                 <p class="place-description">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="btn s-full-width">Buy Tickets</a>
+                                <button class="btn s-full-width js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="col col-third s-col-full mt-16">
@@ -104,7 +104,7 @@
                                 <h3 class="place-heading">Paris</h3>
                                 <p class="place-time">Sat 28 Nov 2016</p>
                                 <p class="place-description">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="btn s-full-width">Buy Tickets</a>
+                                <button class="btn s-full-width js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                         <div class="col col-third s-col-full mt-16">
@@ -113,7 +113,7 @@
                                 <h3 class="place-heading">San Francisco</h3>
                                 <p class="place-time">Sun 29 Nov 2016</p>
                                 <p class="place-description">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                                <a href="#" class="btn s-full-width">Buy Tickets</a>
+                                <button class="btn s-full-width js-buy-ticket">Buy Tickets</button>
                             </div>
                         </div>
                     </div>
@@ -135,15 +135,15 @@
                         <form action="">
                             <div class="row">
                                 <div class="col col-half s-col-full">
-                                    <input type="text" name="" id="" placeholder="Name" class="form-control" required>
+                                    <input type="text" name="" id="contact-name" placeholder="Name" class="form-control" required>
                                 </div>
                                 <div class="col col-half s-col-full s-mt-8">
-                                    <input type="email" name="" id="" placeholder="Email" class="form-control" required>
+                                    <input type="email" name="" id="contact-email" placeholder="Email" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row mt-8">
                                 <div class="col col-full">
-                                    <input type="text" name="" id="" placeholder="Message" class="form-control" required>
+                                    <input type="text" name="" id="contact-message" placeholder="Message" class="form-control" required>
                                 </div>
                             </div>
                             <input class="contact-submit-btn btn pull-right mt-16 s-full-width" type="submit" value="SEND">
@@ -172,6 +172,45 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal js-modal">
+        <div class="modal-containter js-modal-container">
+            <div class="modal-close js-modal-close">
+                X
+            </div>
+
+            <header class="modal-header">
+                <i class="modal-heading-icon fa fa-suitcase"></i>
+                Tickets
+            </header>
+
+            <div class="modal-body">
+                <label for="ticket-quantity" class="modal-label">
+                    <i class="fa fa-shopping-cart"></i>
+                    Tickets, $15 per person
+                </label>
+                <input type="text" id="ticket-quantity" class="modal-input" placeholder="How many?">
+                <label for="ticket-email" class="modal-label">
+                    <i class="fa fa-user"></i>
+                    Send To
+                </label>
+                <input type="text" id="ticket-email" class="modal-input" placeholder="How many?">
+
+                <button id="buy-tickets">
+                    Pay
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+
+            <footer class="modal-footer">
+                <p class="modal-help">Need <a href="">help?</a></p>
+            </footer>
+
+        </div>
+    </div>
+
+
     <script>
         var header = document.getElementById('header');
         var mobileMenu = document.getElementById('mobile-menu');
@@ -203,6 +242,34 @@
                 }
             }
         }
+    </script>
+
+    <script>
+        const buyBtns = document.querySelectorAll('.js-buy-ticket')
+        const modal = document.querySelector('.js-modal')
+        const modalClose = document.querySelector('.js-modal-close')
+        const modalContainer = document.querySelector('.js-modal-container')
+
+        function showBuyTicket() {
+            modal.classList.add('open')
+        }
+
+        function hideBuyTicket() {
+            modal.classList.remove('open')
+        }
+
+        for(const buyBtn of buyBtns) {
+            buyBtn.addEventListener('click', showBuyTicket)
+        }
+        
+        modalClose.addEventListener('click', hideBuyTicket)
+
+        modal.addEventListener('click', hideBuyTicket)
+
+        modalContainer.addEventListener('click', (e) => {
+            e.stopPropagation()
+        })
+        
     </script>
 </body>
 </html>

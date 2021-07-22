@@ -92,6 +92,11 @@
         padding: 5px 41px;
     }
 
+    #nav > li:hover > a {
+        color: #fff;
+        background-color: #000;
+    }
+
     #slider .text-content {
         display: none;
     }
